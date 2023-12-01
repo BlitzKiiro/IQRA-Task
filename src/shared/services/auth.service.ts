@@ -32,4 +32,23 @@ export class AuthService {
     await this.afAuth.signOut();
     this.current_user = null;
   }
+
+  async registerWithEmailAndPassword(
+    email: string,
+    password: string,
+    firstName?: string,
+    lastName?: string
+  ) {
+    const credentials = await this.afAuth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
+    const user = credentials.user;
+    if (user && firstName && lastName) {
+      await user.updateProfile({
+        displayName: firstName + ' ' + lastName,
+      });
+    }
+    return credentials;
+  }
 }
