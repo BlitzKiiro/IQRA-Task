@@ -11,11 +11,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  constructor(public authService: AuthService) {
-    console.log(this.authService.current_user);
-
-    this.authService.loginWithEmailAndPassword('blitz@kiiro.com', '123456');
-  }
+  constructor(public authService: AuthService) {}
 
   showMenu: boolean = false;
 }
