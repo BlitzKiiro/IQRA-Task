@@ -42,10 +42,6 @@ export class RegisterComponent {
   );
 
   touchedAndError(fieldName: string) {
-    console.log(fieldName, this.registerForm.get(fieldName)?.errors);
-
-    console.log('ALL FORM ERRORS', this.registerForm.errors);
-
     return (
       this.registerForm.get(fieldName)?.invalid &&
       (this.registerForm.get(fieldName)?.touched ||

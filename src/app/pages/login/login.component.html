@@ -1,1 +1,64 @@
-<p>login works!</p>
+<div class="flex justify-center items-center w-full h-[80vh] bg-gray-900">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="submit($event)"
+    class="w-[600px] bg-gray-800 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+  >
+    <div class="mb-4">
+      <label class="block text-gray-300 text-sm font-bold mb-2" for="email">
+        Email <span class="text-red-500">*</span>
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-black placeholder:text-gray-400 leading-tight focus:outline-none focus:shadow-outline-gray"
+        id="email"
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      />
+      <span *ngIf="touchedAndError('email')" class="text-red-400">
+        @for (error of loginForm.get('email')?.errors | keyvalue; track $index)
+        {
+        <small> {{ error.value.msg }} </small><br />
+        }
+      </span>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-300 text-sm font-bold mb-2" for="password">
+        Password <span class="text-red-500">*</span>
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-black placeholder:text-gray-400 leading-tight focus:outline-none focus:shadow-outline-gray"
+        id="password"
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <span *ngIf="touchedAndError('password')" class="text-red-400">
+        @for (error of loginForm.get('password')?.errors | keyvalue; track
+        $index) {
+        <small> {{ error.value.msg }} </small><br />
+        }
+      </span>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <button
+        class="bg-blue-500 hover:bg-blue-700 disabled:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue"
+        type="submit"
+        [disabled]="loginForm.invalid || isLoading"
+      >
+        <span class="flex gap-2 items-center">
+          @if (isLoading) {
+          <app-spinner />
+          }
+          <span>Login</span>
+        </span>
+      </button>
+    </div>
+    @if (errorMsg) {
+    <div class="m-2 block italic text-red-500">
+      <small>An error Occured: {{ errorMsg }}</small>
+    </div>
+    }
+  </form>
+</div>
