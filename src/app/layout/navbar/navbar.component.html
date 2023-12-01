@@ -53,17 +53,17 @@
         class="w-full flex items-center !justify-between sm:items-stretch sm:justify-start"
       >
         <div class="flex-shrink-0 flex items-center">
-          <span class="text-white text-lg font-bold"
-            >Welcome
-            {{
-              authService.current_user
-                ? authService.current_user.email
-                : "Guest"
-            }}</span
-          >
+          <a routerLink="/" class="text-white text-lg font-bold"> Home </a>
         </div>
         <div class="hidden sm:block sm:ml-6">
-          <div class="flex space-x-4">
+          <div class="flex space-x-4 items-center">
+            <span class="mr-4 italic">
+              {{
+                authService.current_user
+                  ? authService.current_user.displayName
+                  : "Guest User"
+              }}</span
+            >
             @if (authService.current_user) {
             <button
               class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -91,6 +91,13 @@
 
   <!-- Mobile menu -->
   <div class="sm:hidden" [ngClass]="{ hidden: !showMenu }">
+    <span class="p-4 italic">
+      {{
+        authService.current_user
+          ? authService.current_user.displayName
+          : "Guest User"
+      }}</span
+    >
     <div class="px-2 pt-2 pb-3 space-y-1">
       @if ( authService.current_user) {
       <button

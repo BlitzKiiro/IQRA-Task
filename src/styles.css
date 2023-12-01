@@ -5,4 +5,5 @@
 
 html {
   @apply bg-gray-900 text-white;
+  @apply overflow-x-hidden;
 }
