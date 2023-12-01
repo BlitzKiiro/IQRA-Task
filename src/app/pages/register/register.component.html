@@ -110,10 +110,20 @@
       <button
         class="bg-blue-500 hover:bg-blue-700 disabled:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue"
         type="submit"
-        [disabled]="registerForm.invalid"
+        [disabled]="registerForm.invalid || isLoading"
       >
-        Register
+        <span class="flex gap-2 items-center">
+          @if (isLoading) {
+          <app-spinner />
+          }
+          <span>Register</span>
+        </span>
       </button>
     </div>
+    @if (errorMsg) {
+    <div class="m-2 block italic text-red-500">
+      <small>An error Occured: {{ errorMsg }}</small>
+    </div>
+    }
   </form>
 </div>

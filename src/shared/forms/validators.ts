@@ -8,7 +8,7 @@ import {
 export const minLength = (length: number): ValidatorFn => {
   return (control: AbstractControl): ValidationErrors | null => {
     const target = control.value;
-    return target.length < length
+    return target && target.length < length
       ? {
           length: {
             msg: `You should enter at least ${length} characters`,
@@ -35,7 +35,7 @@ export const email = (control: AbstractControl): ValidationErrors | null => {
 export const onlyAlphabet = (
   control: AbstractControl
 ): ValidationErrors | null => {
-  return Validators.pattern(/^[a-zA-Z]+$/)(control)
+  return control.value && Validators.pattern(/^[a-zA-Z]+$/)(control)
     ? { onlyAlphabet: { msg: 'Only english alphabet characters allowed' } }
     : null;
 };
